@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+<bean id="triangle" class="springDemo.Triangle" autowire="byName" >
+<!-- <property name="type" value="equilateral"></property> -->
+ <constructor-arg value="equilateral"></constructor-arg>
+<constructor-arg type="int" value="40"></constructor-arg>
+
+<property name="pointA" ref="point"></property>
+<property name="points">
+<list>
+<ref bean="point"/>
+</list>
+</property>
+
+</bean>
+
+<bean  id="point" class="springDemo.Point">
+<property name="x" value="${pointA.X}"></property>
+<property name="y" value="${pointA.Y}"></property>
+</bean>
+<bean  id="pointB" class="springDemo.Point">
+<property name="x" value="20"></property>
+<property name="y" value="30"></property>
+</bean>
+<!-- bean definitions here -->
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="locations" value="D:\WorkspaceEclipse\springDemo\src\springDemo\pointsconfig.properties"></property>
+</bean>
+</beans>
